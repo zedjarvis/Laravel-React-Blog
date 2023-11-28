@@ -15,10 +15,10 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('category_id')->nullable();
-            $table->string('title');
+            $table->string('title')->unique();
             $table->string('slug')->unique();
             $table->longText('content');
-            $table->string('featured_image');
+            $table->string('featured_image')->nullable();
             $table->enum('status', ['draft', 'published', 'suspended']);
             $table->dateTime('published_at');
             $table->unsignedInteger('views')->default(0);
@@ -26,6 +26,7 @@ return new class extends Migration
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
