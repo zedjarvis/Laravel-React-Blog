@@ -13,8 +13,8 @@ use App\Http\Controllers\UserController;
 
 
 // Guest Auth Routes
-Route::post('auth/register', [AuthenticationController::class, 'register'])->middleware('guest');
-Route::post('auth/login', [AuthenticationController::class, 'login'])->middleware('guest');
+Route::post('auth/register', [AuthenticationController::class, 'register'])->middleware('guest')->name('register');
+Route::post('auth/login', [AuthenticationController::class, 'login'])->middleware('guest')->name('login');
 
 
 // Protected Routes
@@ -22,6 +22,6 @@ Route::middleware('auth:sanctum')->group(function () {
     // Auth
     Route::post('auth/logout', [AuthenticationController::class, 'logout'])->name('logout');
 
-    Route::get('users/me', [UserController::class, 'me'])->name('current-user');
-    Route::get('users', [UserController::class, 'index'])->name('list-users');
+    Route::get('users/me', [UserController::class, 'me'])->name('users-current');
+    Route::get('users', [UserController::class, 'index'])->name('users-list');
 });
